@@ -8,4 +8,4 @@
 
 Branch   | Name
 :--------- | :------ 
- name-branch-example | name-project-example
+ 01-github-explorer | Github Explorer
