@@ -9,7 +9,10 @@ describe('SignInButton component', () => {
     it('should renders correctly when user is not authenticated', () => {
         const useSessionMocked = jest.mocked(useSession);
 
-        useSessionMocked.mockReturnValue([null, false])
+        useSessionMocked.mockReturnValueOnce({
+            data: null,
+            status: 'unauthenticated'
+        });
         
         render(
             <SignInbutton />
