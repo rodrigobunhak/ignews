@@ -26,8 +26,8 @@ export default function Posts({ posts }: PostsProps) {
             <main className={styles.container}>
                 <div className={styles.posts}>
                     { posts.map(post => (
-                        <Link href={`/posts/${post.slug}`}>
-                        <a key={post.slug}>
+                        <Link key={post.slug} href={`/posts/${post.slug}`}>
+                        <a>
                             <time>{post.updatedAt}</time>
                             <strong>{post.title}</strong>
                             <p>{post.excerpt}</p>
@@ -46,6 +46,13 @@ export const getStaticProps: GetStaticProps = async () => {
     const response = await prismic.getByType('post', {
         pageSize: 100,
     })
+
+    // const response = await prismic.query([
+    //     Prismic.predicates.at('document.type', 'post')
+    // ], {
+    //     fetch: ['post.title', 'post.content'],
+    //     pageSize: 100
+    // })
 
     const posts = response.results.map(post => {
         return {
